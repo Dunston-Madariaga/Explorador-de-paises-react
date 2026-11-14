@@ -46,3 +46,20 @@ npm run lint
 - `src/components/Header.jsx`: muestra el título y la descripción.
 - `src/components/CountryCard.jsx`: recibe y muestra los datos de cada país.
 - `src/index.css`: contiene los estilos básicos.
+
+## Pruebas y calidad de código
+
+El proyecto incorpora pruebas automatizadas utilizando **Vitest** y **React Testing Library**.
+
+Actualmente se verifican:
+
+- funciones puras mediante pruebas unitarias;
+- renderizado de componentes;
+- contenido visible mediante `screen`;
+- interacción del usuario mediante `userEvent`;
+- cambios de estado después de eventos.
+
+### Ejecutar las pruebas
+
+```bash
+npm test
