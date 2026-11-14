@@ -59,6 +59,18 @@ npm run lint
 - `src/components/CountryCard.jsx`: recibe y muestra los datos de cada país.
 - `src/index.css`: contiene los estilos básicos.
 
+## Carga de datos y manejo de estados
+
+Los países se obtienen desde una API pública mediante `fetch` dentro de `useEffect`.
+
+La interfaz maneja tres estados principales:
+
+- `paises`: almacena los datos recibidos.
+- `cargando`: muestra un mensaje mientras la petición está en proceso.
+- `error`: muestra un mensaje amigable si ocurre un problema al consumir la API.
+
+Los resultados se renderizan dinámicamente mediante `map()` y cada país utiliza su código `alpha2Code` como `key` única.
+
 ## Pruebas y calidad de código
 
 El proyecto incorpora pruebas automatizadas utilizando **Vitest** y **React Testing Library**.
