@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import CountryCard from './components/CountryCard'
+import { obtenerPaisesVisibles } from './utils/paises'
 
 const paises = [
   {
@@ -35,7 +36,7 @@ const paises = [
 
 function App() {
   const [mostrarTodos, setMostrarTodos] = useState(false)
-  const paisesVisibles = mostrarTodos ? paises : paises.slice(0, 2)
+  const paisesVisibles = obtenerPaisesVisibles(paises, mostrarTodos)
 
   return (
     <>
