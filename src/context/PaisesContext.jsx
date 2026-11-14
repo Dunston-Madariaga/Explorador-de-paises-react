@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { filtrarPaises } from '../utils/paises'
 
 const URL_PAISES = 'https://countries.dev/countries'
 const PaisesContext = createContext(null)
@@ -8,6 +9,10 @@ export function PaisesProvider({ children }) {
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(false)
   const [mostrarTodos, setMostrarTodos] = useState(false)
+  const [busqueda, setBusqueda] = useState('')
+  const [region, setRegion] = useState('')
+  const [paisSeleccionado, seleccionarPais] = useState(null)
+  const paisesFiltrados = filtrarPaises(paises, busqueda, region)
 
   useEffect(() => {
     const controlador = new AbortController()
@@ -43,8 +48,31 @@ export function PaisesProvider({ children }) {
     setMostrarTodos((valorActual) => !valorActual)
   }
 
+  function cambiarBusqueda(valor) {
+    setBusqueda(valor)
+    setMostrarTodos(false)
+  }
+
+  function cambiarRegion(valor) {
+    setRegion(valor)
+    setMostrarTodos(false)
+  }
+
   return (
-    <PaisesContext.Provider value={{ paises, cargando, error, mostrarTodos, alternarMostrarTodos }}>
+    <PaisesContext.Provider value={{
+      paises,
+      paisesFiltrados,
+      cargando,
+      error,
+      mostrarTodos,
+      alternarMostrarTodos,
+      busqueda,
+      cambiarBusqueda,
+      region,
+      cambiarRegion,
+      paisSeleccionado,
+      seleccionarPais,
+    }}>
       {children}
     </PaisesContext.Provider>
   )

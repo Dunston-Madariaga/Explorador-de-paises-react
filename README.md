@@ -2,13 +2,9 @@
 
 Prácticas universitarias con Vite, React y JavaScript.
 
-La primera práctica muestra un encabezado con el título «¿En qué parte del mundo?»
-y una breve descripción del proyecto mediante el componente `Header`.
-
-La segunda práctica agrega tarjetas con datos de ejemplo de Argentina, Bolivia,
-Egipto y Alemania. Se conserva ese comportamiento con los datos de la API.
-Inicialmente se muestran dos países. El botón «Mostrar todos» permite ver la lista
-completa y cambia a «Mostrar menos» para volver a mostrar dos.
+El explorador muestra inicialmente nueve países. «Mostrar todos» expande los
+resultados y «Mostrar menos» vuelve a limitar la lista. La búsqueda por nombre
+y el filtro por región se pueden combinar sobre los países cargados.
 
 ## Conceptos de la segunda práctica
 
@@ -56,20 +52,24 @@ npm run lint
 - `src/main.jsx`: inicia React y carga los estilos.
 - `src/App.jsx` compone la pantalla dentro de `PaisesProvider`.
 - `src/context/PaisesContext.jsx` define el contexto, el Provider y el hook `usePaises`.
-- `src/components/Header.jsx`: muestra el título y la descripción.
+- `src/components/Header.jsx` muestra el título, la navegación y el botón de tema.
+- `src/components/CountryFilters.jsx` permite buscar por nombre y filtrar por región.
 - `src/components/CountryList.jsx` muestra el estado de la carga y las tarjetas visibles.
 - `src/components/CountryControls.jsx` muestra el botón para expandir o contraer la lista.
 - `src/components/CountryCard.jsx`: recibe y muestra los datos de cada país.
-- `src/index.css`: contiene los estilos básicos.
+- `src/components/CountryDetail.jsx` muestra los datos del país seleccionado.
+- `src/index.css` define los temas y la distribución adaptable.
 
 ## Estado compartido con Context API
 
-`PaisesContext` comparte cuatro valores de estado.
+`PaisesContext` comparte el estado de la carga y del listado.
 
 - `paises` almacena los datos recibidos.
 - `cargando` indica que la petición está en curso.
 - `error` indica que hubo un problema al cargar los países.
-- `mostrarTodos` determina si se muestran dos países o la lista completa.
+- `mostrarTodos` determina si se muestran nueve países o todos los resultados.
+- `busqueda` y `region` determinan los países que integran `paisesFiltrados`.
+- `paisSeleccionado` guarda el país que se muestra en el panel de detalle.
 
 `PaisesProvider` centraliza el estado, la carga de datos y la acción
 `alternarMostrarTodos`. `App` monta el Provider alrededor de la pantalla.

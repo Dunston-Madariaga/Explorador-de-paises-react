@@ -15,12 +15,12 @@ describe('CountryCard', () => {
 
     expect(screen.getByRole('heading', { name: 'Bolivia' })).toBeVisible()
 
-    const poblacion = screen.getByText('12000000')
+    const poblacion = screen.getByText('12.000.000')
     const region = screen.getByText('América')
     const capital = screen.getByText('Sucre')
 
     expect(poblacion).toBeVisible()
-    expect(poblacion).toHaveTextContent('Población: 12000000')
+    expect(poblacion).toHaveTextContent('Población: 12.000.000')
     expect(region).toBeVisible()
     expect(region).toHaveTextContent('Región: América')
     expect(capital).toBeVisible()

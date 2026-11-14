@@ -10,10 +10,17 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
-it('sincroniza la lista y el botón al mostrar todos y volver a mostrar dos países', async () => {
+it('sincroniza la lista y el botón al mostrar todos y volver a mostrar nueve países', async () => {
   const paises = [
     { alpha2Code: 'AR', name: 'Argentina' },
     { alpha2Code: 'BO', name: 'Bolivia' },
+    { alpha2Code: 'BR', name: 'Brasil' },
+    { alpha2Code: 'CA', name: 'Canadá' },
+    { alpha2Code: 'CL', name: 'Chile' },
+    { alpha2Code: 'CO', name: 'Colombia' },
+    { alpha2Code: 'EC', name: 'Ecuador' },
+    { alpha2Code: 'MX', name: 'México' },
+    { alpha2Code: 'PE', name: 'Perú' },
     { alpha2Code: 'EG', name: 'Egipto' },
   ]
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
@@ -31,15 +38,15 @@ it('sincroniza la lista y el botón al mostrar todos y volver a mostrar dos paí
   )
 
   const mostrarTodos = await screen.findByRole('button', { name: 'Mostrar todos' })
-  expect(screen.getAllByRole('article')).toHaveLength(2)
+  expect(screen.getAllByRole('article')).toHaveLength(9)
 
   await user.click(mostrarTodos)
   const mostrarMenos = screen.getByRole('button', { name: 'Mostrar menos' })
-  expect(screen.getAllByRole('article')).toHaveLength(3)
+  expect(screen.getAllByRole('article')).toHaveLength(10)
   expect(screen.getByRole('heading', { name: 'Egipto' })).toBeVisible()
 
   await user.click(mostrarMenos)
   expect(screen.getByRole('button', { name: 'Mostrar todos' })).toBeVisible()
-  expect(screen.getAllByRole('article')).toHaveLength(2)
+  expect(screen.getAllByRole('article')).toHaveLength(9)
   expect(screen.queryByRole('heading', { name: 'Egipto' })).not.toBeInTheDocument()
 })

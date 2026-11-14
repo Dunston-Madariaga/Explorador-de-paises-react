@@ -7,13 +7,16 @@ describe('obtenerPaisesVisibles', () => {
     { nombre: 'Bolivia' },
     { nombre: 'Egipto' },
     { nombre: 'Alemania' },
+    { nombre: 'España' },
+    { nombre: 'India' },
+    { nombre: 'Rusia' },
+    { nombre: 'Venezuela' },
+    { nombre: 'Japón' },
+    { nombre: 'Francia' },
   ]
 
-  it('devuelve los primeros dos países si mostrarTodos es false', () => {
-    expect(obtenerPaisesVisibles(paises, false)).toEqual([
-      { nombre: 'Argentina' },
-      { nombre: 'Bolivia' },
-    ])
+  it('devuelve los primeros nueve países si mostrarTodos es false', () => {
+    expect(obtenerPaisesVisibles(paises, false)).toEqual(paises.slice(0, 9))
   })
 
   it('devuelve todos los países si mostrarTodos es true', () => {

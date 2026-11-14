@@ -2,14 +2,22 @@ import { usePaises } from '../context/PaisesContext'
 import { LIMITE_INICIAL_PAISES } from '../utils/paises'
 
 function CountryControls() {
-  const { paises, mostrarTodos, alternarMostrarTodos } = usePaises()
+  const { paisesFiltrados, mostrarTodos, alternarMostrarTodos } = usePaises()
 
-  if (paises.length <= LIMITE_INICIAL_PAISES) return null
+  if (paisesFiltrados.length <= LIMITE_INICIAL_PAISES) return null
 
   return (
-    <button type="button" onClick={alternarMostrarTodos}>
-      {mostrarTodos ? 'Mostrar menos' : 'Mostrar todos'}
-    </button>
+    <div className="country-controls">
+      <button
+        type="button"
+        className="country-controls__button"
+        aria-controls="lista-paises"
+        aria-expanded={mostrarTodos}
+        onClick={alternarMostrarTodos}
+      >
+        {mostrarTodos ? 'Mostrar menos' : 'Mostrar todos'}
+      </button>
+    </div>
   )
 }
 
